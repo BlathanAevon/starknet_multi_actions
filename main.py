@@ -11,12 +11,16 @@ import random
 from loguru import logger
 import csv
 import time
+from check_gas import get_current_gas_price
 
 
 STARKNET_NODE = "https://starknet-mainnet.public.blastapi.io"
 
 # How many messages to send on every acccount
 MESSAGES_PER_ACCOUNT = 1
+
+# Gas value at which script is acceptable to work
+ACCEPTABLE_GWEI = 16
 
 
 def get_random_string(length):
@@ -72,7 +76,21 @@ async def main():
 
         random.shuffle(accounts)
 
+        if len(accounts) < 1:
+            logger.error("You forgot to add wallets in wallets.csv!")
+
         for acc in accounts:
+            while True:
+                gwei = get_current_gas_price()
+                if gwei > ACCEPTABLE_GWEI:
+                    logger.error(
+                        f"Gwei is {gwei} - too high! Waiting for lower gas...\n"
+                    )
+                    time.sleep(random.randint(5, 10))
+                else:
+                    logger.succes("Gas is acceptable for work")
+                    break
+
             tts = random.randint(40, 350)
 
             logger.info(f"Working on wallet: {hex(acc.address)}\n")
