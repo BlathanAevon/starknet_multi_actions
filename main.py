@@ -15,9 +15,11 @@ import time
 
 STARKNET_NODE = "https://starknet-mainnet.public.blastapi.io"
 
+# How many messages to send on every acccount
+MESSAGES_PER_ACCOUNT = 1
+
 
 def get_random_string(length):
-    # choose from all lowercase letter
     letters = string.ascii_lowercase
     result_str = "".join(random.choice(letters) for i in range(length))
     return result_str
@@ -33,7 +35,6 @@ async def dmail_send_email(account):
     logger.info("Generating random email and message...")
     random_email = f"{get_random_string(6)}".encode()
     random_message = get_random_string(3).encode()
-    logger.info(f"I will send message on {random_email} with text {random_message}")
 
     logger.info("Assembling Transaction...")
     invocation = await contract.functions["transaction"].invoke(
@@ -50,7 +51,6 @@ async def main():
     with open("wallets.csv", newline="") as csvfile:
         spamreader = csv.reader(csvfile, delimiter=",")
         for row in spamreader:
-
             if str(row[1]).startswith("0x"):
                 private_key = int(row[1], 16)
             else:
@@ -74,9 +74,20 @@ async def main():
 
         for acc in accounts:
             tts = random.randint(40, 350)
-            logger.info(f"Working on wallet: {hex(acc.address)}")
-            await dmail_send_email(acc)
-            logger.info(f"Sleeping {tts} seconds...")
+
+            logger.info(f"Working on wallet: {hex(acc.address)}\n")
+            if MESSAGES_PER_ACCOUNT > 1:
+                for _ in range(MESSAGES_PER_ACCOUNT):
+                    message_delay = random.randit(10, 60)
+                    await dmail_send_email(acc)
+                    logger.opt(colors=True).info(
+                        f"<yellow>Waiting {message_delay} before next message</yellow>"
+                    )
+                    time.sleep(message_delay)
+            else:
+                await dmail_send_email(acc)
+
+            logger.info(f"Sleeping {tts} seconds...\n")
             time.sleep(tts)
 
 
