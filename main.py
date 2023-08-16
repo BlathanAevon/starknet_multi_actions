@@ -2,25 +2,30 @@ from starknet_py.net.account.account import Account
 from starknet_py.net.full_node_client import FullNodeClient
 from starknet_py.net.models.chains import StarknetChainId
 from starknet_py.net.signer.stark_curve_signer import KeyPair
-import asyncio
-from tokens import *
-from abi import *
+from dmail_abi import DMAIL_TRANSACTION_ABI
 from starknet_py.contract import Contract
+from loguru import logger
+from settings import ACCEPTABLE_GWEI, MESSAGES_PER_ACCOUNT_FROM, MESSAGES_PER_ACCOUNT_TO, M_DELAY_FROM, M_DELAY_TO, DELAY_FROM, DELAY_TO, STARKNET_NODE
+import asyncio
 import string
 import random
-from loguru import logger
 import csv
 import time
-from check_gas import get_current_gas_price
+from web3 import Web3
 
+def get_current_gas_price():
+    try:
+        # Connect to an Ethereum node using Web3
+        w3 = Web3(Web3.HTTPProvider('https://rpc.ankr.com/eth'))
 
-STARKNET_NODE = "https://starknet-mainnet.public.blastapi.io"
+        # Get the current gas price in GWEI
+        gas_price_wei = w3.eth.gas_price
+        gas_price_gwei = w3.from_wei(gas_price_wei, 'gwei')
 
-# How many messages to send on every acccount
-MESSAGES_PER_ACCOUNT = 1
-
-# Gas value at which script is acceptable to work
-ACCEPTABLE_GWEI = 16
+        return round(gas_price_gwei, 0)
+    except Exception as e:
+        print("Error fetching gas price:", e)
+        return None
 
 
 def get_random_string(length):
@@ -32,7 +37,7 @@ def get_random_string(length):
 async def dmail_send_email(account):
     contract = Contract(
         address=0x0454F0BD015E730E5ADBB4F080B075FDBF55654FF41EE336203AA2E1AC4D4309,
-        abi=DMAIL_TRANSACTION,
+        abi=DMAIL_TRANSACTION_ABI,
         provider=account,
     )
 
@@ -88,15 +93,15 @@ async def main():
                     )
                     time.sleep(random.randint(5, 10))
                 else:
-                    logger.succes("Gas is acceptable for work")
+                    logger.success("Gas is acceptable for work")
                     break
 
-            tts = random.randint(40, 350)
+            tts = random.randint(DELAY_FROM, DELAY_TO)
 
             logger.info(f"Working on wallet: {hex(acc.address)}\n")
-            if MESSAGES_PER_ACCOUNT > 1:
-                for _ in range(MESSAGES_PER_ACCOUNT):
-                    message_delay = random.randit(10, 60)
+            if MESSAGES_PER_ACCOUNT_FROM > 1:
+                for _ in range(random.randint(MESSAGES_PER_ACCOUNT_FROM, MESSAGES_PER_ACCOUNT_TO)):
+                    message_delay = random.randit(M_DELAY_FROM, M_DELAY_TO)
                     await dmail_send_email(acc)
                     logger.opt(colors=True).info(
                         f"<yellow>Waiting {message_delay} before next message</yellow>"
