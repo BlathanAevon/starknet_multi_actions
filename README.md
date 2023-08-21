@@ -1,5 +1,7 @@
 # starknet_dmail
 
+The software can mint starknet id and send messages through dmail
+
 Installation:
 
 python -m venv venv
