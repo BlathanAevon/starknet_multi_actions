@@ -156,7 +156,7 @@ async def main():
                     logger.error("MODULE NAME ERROR, CHECK THE CODE!")
 
                 mod_tts = random.randint(MOD_DELAY_FROM, MOD_DELAY_TO)
-                logger.warning(f"Sleeping {tts} seconds between modules...\n")
+                logger.warning(f"Sleeping {mod_tts} seconds between modules...\n")
                 time.sleep(mod_tts)
 
             tts = random.randint(DELAY_FROM, DELAY_TO)
