@@ -3,6 +3,7 @@ from starknet_py.net.full_node_client import FullNodeClient
 from starknet_py.net.models.chains import StarknetChainId
 from starknet_py.net.signer.stark_curve_signer import KeyPair
 from dmail_abi import DMAIL_TRANSACTION_ABI
+from public_mint_abi import PUBLIC_MINT_ABI
 from id_minter_abi import MINT_ID_ABI
 from starknet_py.contract import Contract
 from loguru import logger
@@ -87,6 +88,23 @@ async def mint_starknet_id(account):
     logger.success(f"Transaction done!")
 
 
+async def mint_public_nft(account):
+    contract = Contract(
+        address=0x060582DF2CD4AD2C988B11FDEDE5C43F56A432E895DF255CCD1AF129160044B8,
+        abi=PUBLIC_MINT_ABI,
+        provider=account,
+    )
+
+    logger.info("Assembling Transaction...")
+    invocation = await contract.functions["publicMint"].invoke(
+        account.address, auto_estimate=True
+    )
+
+    logger.info("Minting an Public NFT...")
+    await invocation.wait_for_acceptance()
+    logger.success(f"Transaction done!")
+
+
 async def main():
     accounts = []
     with open("wallets.csv", newline="") as csvfile:
@@ -117,6 +135,7 @@ async def main():
             logger.error("You forgot to add wallets in wallets.csv!")
 
         for acc in accounts:
+            # await myswap_swap(acc, "USDT")
             while True:
                 gwei = get_current_gas_price()
                 if gwei > ACCEPTABLE_GWEI:
@@ -152,6 +171,8 @@ async def main():
                             time.sleep(message_delay)
                     else:
                         await dmail_send_email(acc)
+                elif module == "mint_public_nft":
+                    await mint_public_nft(acc)
                 else:
                     logger.error("MODULE NAME ERROR, CHECK THE CODE!")
 

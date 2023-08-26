@@ -22,5 +22,5 @@ ACCEPTABLE_GWEI = 17
 # True if you want to randomize moudules execution
 RANDOMIZE_MODULES = True
 
-# Available modules: dmail_send_email, mint_starknet_id
-MODULES = ["dmail_send_email", "mint_starknet_id"]
+# Available modules: dmail_send_email, mint_starknet_id, mint_public_nft
+MODULES = ["dmail_send_email", "mint_starknet_id", "mint_public_nft"]
