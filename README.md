@@ -1,21 +1,19 @@
-# starknet_dmail
+# starknet_dmail & multi_actions
 
-The software can mint starknet id and send messages through dmail
+**A simple script, to send emails through Dmail.ai, mint Starknet Identity, Mint random NFT**
 
-Installation:
+## Installation:
+### With *venv* (virtual environment)
 
-python -m venv venv
-
-macOS: source venv/bin/activate
-Windows: venv/scripts/activate
-
-pip (or pip3) install -r requirements.txt
-
-
-Settings:
-
-Put wallet and private in wallets.csv file
-Set the settings in the settings.py
+1. `python -m venv venv`
+2.  macOS: `source venv/bin/activate`
+2.1 Windows: `venv\Scripts\activate`
+3. `pip install -r requirements.txt`
+4. `python main.py`
 
 
-python main.py
+### Settings:
+
+Put wallets in `wallets.csv` file in format *ADDRESS*, *PRIVATE KEY*
+In `settings.py` set the settings (it's intuitive)
+
