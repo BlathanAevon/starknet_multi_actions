@@ -7,7 +7,7 @@
 ## Installation:
 
 1. Clone the repository
-```python
+```bash
 git clone https://github.com/BlathanAevon/starknet_multi_actions
 ```
 
