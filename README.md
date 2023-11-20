@@ -1,19 +1,27 @@
-# starknet_dmail & multi_actions
+# starknet_multi_actions
 
-**A simple script, to send emails through Dmail.ai, mint Starknet Identity, Mint random NFT**
+**A simple script, to send emails through Dmail.ai, mint Starknet ID, Mint random NFT**
 
 ## Installation:
-### With *venv* (virtual environment)
 
-1. `python -m venv venv`
-2.  macOS: `source venv/bin/activate`
-2.1 Windows: `venv\Scripts\activate`
-3. `pip install -r requirements.txt`
-4. `python main.py`
+1. Clone the repository
+```git clone https://github.com/BlathanAevon/starknet_multi_actions```
+2. Go to directory
+```cd starknet_multi_actions```
+3. Virtual Environment creation
+```python (or python3) -m venv venv```
+4. Activate the virtual environment
+  - Windows
+    ```venv/Scripts/activate```
+  - Linux and MacOS
+    ```source venv\bin\activate```
+5. Install dependencies (modules)
+```pip install -r requirements.txt```
 
-
-### Settings:
+##Settings:
 
 Put wallets in `wallets.csv` file in format *ADDRESS*, *PRIVATE KEY*
-In `settings.py` set the settings (it's intuitive)
+In `settings.py` set timings
 
+## Run the program
+```python main.py```
