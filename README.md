@@ -16,12 +16,12 @@ git clone https://github.com/BlathanAevon/starknet_multi_actions
 cd starknet_multi_actions
 ```
 4. Virtual Environment creation
-```python
+```bash
 python (or python3) -m venv venv
 ```
 5. Activate the virtual environment
     - Windows
-      ```python
+      ```bash
       venv/Scripts/activate
       ```
     - Linux and MacOS
@@ -29,7 +29,7 @@ python (or python3) -m venv venv
       source venv\bin\activate
       ```
 6. Install dependencies (modules)
-```python
+```bash
 pip install -r requirements.txt
 ```
 
@@ -39,6 +39,6 @@ Put wallets in `wallets.csv` file in format *ADDRESS*, *PRIVATE KEY*
 In `settings.py` set timings
 
 ## Run the program
-```python
+```bash
 python main.py
 ```
