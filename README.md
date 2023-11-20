@@ -5,18 +5,31 @@
 ## Installation:
 
 1. Clone the repository
-```git clone https://github.com/BlathanAevon/starknet_multi_actions```
-2. Go to directory
-```cd starknet_multi_actions```
-3. Virtual Environment creation
-```python (or python3) -m venv venv```
-4. Activate the virtual environment
+```bash
+git clone https://github.com/BlathanAevon/starknet_multi_actions
+```
+
+3. Go to directory
+```bash
+cd starknet_multi_actions
+```
+4. Virtual Environment creation
+```python
+python (or python3) -m venv venv
+```
+5. Activate the virtual environment
     - Windows
-      ```venv/Scripts/activate```
+      ```bash
+      venv/Scripts/activate
+      ```
     - Linux and MacOS
-      ```source venv\bin\activate```
-5. Install dependencies (modules)
-```pip install -r requirements.txt```
+      ```bash
+      source venv\bin\activate
+      ```
+6. Install dependencies (modules)
+```bash
+pip install -r requirements.txt
+```
 
 ##Settings:
 
