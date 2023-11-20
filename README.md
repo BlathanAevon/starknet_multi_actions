@@ -7,7 +7,7 @@
 ## Installation:
 
 1. Clone the repository
-```bash
+```python
 git clone https://github.com/BlathanAevon/starknet_multi_actions
 ```
 
@@ -21,7 +21,7 @@ python (or python3) -m venv venv
 ```
 5. Activate the virtual environment
     - Windows
-      ```bash
+      ```python
       venv/Scripts/activate
       ```
     - Linux and MacOS
@@ -29,7 +29,7 @@ python (or python3) -m venv venv
       source venv\bin\activate
       ```
 6. Install dependencies (modules)
-```bash
+```python
 pip install -r requirements.txt
 ```
 
@@ -39,6 +39,6 @@ Put wallets in `wallets.csv` file in format *ADDRESS*, *PRIVATE KEY*
 In `settings.py` set timings
 
 ## Run the program
-```bash
+```python
 python main.py
 ```
