@@ -2,6 +2,8 @@
 
 **A simple script, to send emails through Dmail.ai, mint Starknet ID, Mint random NFT**
 
+![Static Badge](https://img.shields.io/badge/just%20the%20message-8A2BE2)
+
 ## Installation:
 
 1. Clone the repository
@@ -31,7 +33,7 @@ python (or python3) -m venv venv
 pip install -r requirements.txt
 ```
 
-##Settings:
+## Settings:
 
 Put wallets in `wallets.csv` file in format *ADDRESS*, *PRIVATE KEY*
 In `settings.py` set timings
