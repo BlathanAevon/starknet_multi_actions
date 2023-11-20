@@ -11,10 +11,10 @@
 3. Virtual Environment creation
 ```python (or python3) -m venv venv```
 4. Activate the virtual environment
-  - Windows
-    ```venv/Scripts/activate```
-  - Linux and MacOS
-    ```source venv\bin\activate```
+    - Windows
+      ```venv/Scripts/activate```
+    - Linux and MacOS
+      ```source venv\bin\activate```
 5. Install dependencies (modules)
 ```pip install -r requirements.txt```
 
