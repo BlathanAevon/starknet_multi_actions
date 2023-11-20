@@ -2,7 +2,7 @@
 
 **A simple script, to send emails through Dmail.ai, mint Starknet ID, Mint random NFT**
 
-![Static Badge](https://img.shields.io/badge/just%20the%20message-8A2BE2)
+![Static Badge](https://img.shields.io/badge/Starknet-8A2BE2)
 
 ## Installation:
 
