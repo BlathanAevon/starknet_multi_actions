@@ -2,7 +2,7 @@
 
 **A simple script, to send emails through Dmail.ai, mint Starknet ID, Mint random NFT**
 
-![Static Badge](https://img.shields.io/badge/Starknet-8A2BE2) ![Static Badge](https://img.shields.io/badge/Language:-python)
+![Static Badge](https://img.shields.io/badge/Starknet-8A2BE2) ![Static Badge](https://img.shields.io/badge/Language-python-blue)
 
 ## Installation:
 
@@ -39,4 +39,6 @@ Put wallets in `wallets.csv` file in format *ADDRESS*, *PRIVATE KEY*
 In `settings.py` set timings
 
 ## Run the program
-```python main.py```
+```bash
+python main.py
+```
